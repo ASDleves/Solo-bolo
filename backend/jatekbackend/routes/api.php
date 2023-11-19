@@ -18,7 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/champs', [ChampController::class, 'index']);
+Route::get('/champs/nev/{nev}', [ChampController::class, 'showByName']);
 Route::get('/champs/{id}', [ChampController::class, 'show']);
+
 Route::post('/champs', [ChampController::class, 'store']);
 Route::put('/champs/{id}', [ChampController::class, 'update']);
 Route::delete('/champs/{id}', [ChampController::class, 'destroy']);

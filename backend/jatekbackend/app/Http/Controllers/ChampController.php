@@ -16,6 +16,13 @@ class ChampController extends Controller
         $champ = Champ::find($id);
         return response()->json($champ);
     }
+    public function showByName($nev) {
+        // Find the champ by 'nev'
+        $champ = Champ::where('nev', $nev)->first();
+        return response()->json($champ);
+    }
+    
+    
 
     public function store(Request $request){
         $record = new Champ();
