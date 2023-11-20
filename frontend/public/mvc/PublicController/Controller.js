@@ -9,7 +9,7 @@ import PublicMegjelenitnev from "../PublicView/PublicTablazat/PublicMegjelenites
 class Controller {
     constructor() {
         // Initialize randomInt as a property of the class
-        this.$randomInt = Math.floor(Math.random() * 6) + 1;
+        this.$randomInt = Math.floor(Math.random() * 165) + 1;
         console.log(this.$randomInt);
 
         this.dataService = new DataService();
@@ -20,7 +20,7 @@ class Controller {
         // this.dataService.getAxiosData("http://localhost:8000/api/champs", this.egyenmegjelenites.bind(this), this.hibakezeles);
 
         this.publicDataService.getPublicAxiosData("http://localhost:8000/api/champs", this.$randomInt, (response) => {
-            console.log(response.nev);
+            console.log(response);
             this.Hasonlitnev = response.nev
             this.Hasonlitnem = response.nem
             this.Hasonlitpozicio = response.pozicio
