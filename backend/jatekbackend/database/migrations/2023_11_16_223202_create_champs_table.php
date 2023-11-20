@@ -47,21 +47,41 @@ return new class extends Migration
             'nev'=>'Aurelion Sol',
             'nem'=>'Férfi',
             'pozicio'=>'Mid',
-            'faj'=>'Égi, Sárkány',
+            'faj'=>'Égi/Sárkány',
             'nyersanyag'=>'Mana',
             'fegyver'=>'Távolharcos',
-            'szarmazas'=>'Runaterra, Targon',
+            'szarmazas'=>'Runaterra/Targon',
             'megjelenes'=>2016,
         ]);
         Champ::create([
             'nev'=>'Camille',
             'nem'=>'Nő',
             'pozicio'=>'Top',
-            'faj'=>'Cyborg, Ember',
+            'faj'=>'Cyborg/Ember',
             'nyersanyag'=>'mana',
             'fegyver'=>'Közelharcos',
             'szarmazas'=>'Piltover',
             'megjelenes'=>2016,
+        ]);
+        Champ::create([
+            'nev'=>'Kayn',
+            'nem'=>'Férfi',
+            'pozicio'=>'Dzsungel',
+            'faj'=>'Darkin/Ember/Varázslatosan megváltozott',
+            'nyersanyag'=>'mana',
+            'fegyver'=>'Közelharcos',
+            'szarmazas'=>'Ionia/Noxus/Runeterra/Shurima',
+            'megjelenes'=>2017,
+        ]);
+        Champ::create([
+            'nev'=>'Reksai',
+            'nem'=>'Nő',
+            'pozicio'=>'Dzsungel',
+            'faj'=>'Void',
+            'nyersanyag'=>'rage',
+            'fegyver'=>'Közelharcos',
+            'szarmazas'=>'Shurima/Void',
+            'megjelenes'=>2014,
         ]);
     }
     

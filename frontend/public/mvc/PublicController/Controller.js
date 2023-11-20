@@ -9,7 +9,7 @@ import PublicMegjelenitnev from "../PublicView/PublicTablazat/PublicMegjelenites
 class Controller {
     constructor() {
         // Initialize randomInt as a property of the class
-        this.$randomInt = Math.floor(Math.random() * 4) + 1;
+        this.$randomInt = Math.floor(Math.random() * 6) + 1;
         console.log(this.$randomInt);
 
         this.dataService = new DataService();
@@ -17,7 +17,7 @@ class Controller {
         this.urlapModel = new UrlapModel();
         this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
 
-       // this.dataService.getAxiosData("http://localhost:8000/api/champs", this.egyenmegjelenites.bind(this), this.hibakezeles);
+        // this.dataService.getAxiosData("http://localhost:8000/api/champs", this.egyenmegjelenites.bind(this), this.hibakezeles);
 
         this.publicDataService.getPublicAxiosData("http://localhost:8000/api/champs", this.$randomInt, (response) => {
             console.log(response.nev);
@@ -37,39 +37,85 @@ class Controller {
         this.submitElem.on("click", (event) => {
             event.preventDefault();
             let textValue = this.textInputElem.val();
-        
+
             if (textValue === this.Hasonlitnev) {
                 console.log("Nyertél");
-                console.log(textValue);
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, true); // Pass true for success
                 }, this.hibakezeles);
             } else {
                 console.log("Nem jó a hős");
-                this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (visszater) => {
-                    this.megjelenitesnevvel(visszater, textValue, false);
-                    this.Hasonlitasnev = visszater.nev
-                    this.Hasonlitasnem = visszater.nem
-                    this.Hasonlitaspozicio = visszater.pozicio
-                    this.Hasonlitasfaj = visszater.faj
-                    this.Hasonlitasnyersanyag = visszater.nyersanyag
-                    this.Hasonlitasfegyver = visszater.fegyver
-                    this.Hasonlitasszarmazas = visszater.szarmazas
-                    this.Hasonlitasmegjelenes = visszater.megjelenes
-                    console.log(this.Hasonlitasnem)
+                this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
+                    this.megjelenitesnevvel(response, textValue, false);
+                    console.log(response.nem)
+                    this.Mnev = response.nev
+                    this.Mnem = response.nem
+                    this.Mpozi = response.pozicio
+                    this.Mfaj = response.faj
+                    this.Mnyers = response.nyersanyag
+                    this.Mfegyver = response.fegyver
+                    this.Mszarmaz = response.szarmazas
+                    this.Mmegjelen = response.megjelenes
+                    const colorForNem = (this.Mnem === this.Hasonlitnem) ? "green" : "red";
+                    this.changeTdBackground(this.Mnem, colorForNem);
+
+                    // Use the new comparison function for positions
+                    const colorForPozicio = this.compareAttributes(this.Mpozi, this.Hasonlitpozicio);
+                    this.changeTdBackground(this.Mpozi, colorForPozicio);
+
+                     const colorForFaj = this.compareAttributes(this.Mfaj, this.Hasonlitfaj);
+                    this.changeTdBackground(this.Mfaj, colorForFaj);
+
+                    const colorForNyersanyag = this.compareAttributes(this.Mnyers, this.Hasonlitnyersanyag);
+                    this.changeTdBackground(this.Mnyers, colorForNyersanyag);
+
+                    const colorForfegyver = this.compareAttributes(this.Mfegyver, this.Hasonlitfegyver);
+                    this.changeTdBackground(this.Mfegyver, colorForfegyver);
+ 
+                    const colorForszarmaz = this.compareAttributes(this.Mszarmaz, this.Hasonlitszarmazas);
+                    this.changeTdBackground(this.Mszarmaz, colorForszarmaz);
+                    const colorFormegjelen = (this.Mmegjelen === this.Hasonlitmegjelenes) ? "green" : "red";
+                    this.changeTdBackground(this.Mmegjelen, colorFormegjelen);  
                 }, this.hibakezeles);
-                console.log(this.Hasonlitnem+"asd")
-                console.log(this.Hasonlitasnem+"asddd")
-                if (this.Hasonlitnem == this.Hasonlitasnem){
-                    
-                }
+
             }
             this.textInputElem.val('');
         });
     }
+    compareAttributes(targetAttribute, comparisonAttribute) {
+        const targetParts = targetAttribute.split('/');
+        const comparisonParts = comparisonAttribute.split('/');
+        console.log(targetParts)
+        console.log(comparisonParts)
+        // Check for exact match (all parts match)
+        if (targetParts.every(part => comparisonParts.includes(part)) && comparisonParts.every(part => targetParts.includes(part))) {
+            return "green";
+        }
+
+        // Check for partial match (some parts match)
+        if (targetParts.some(part => comparisonParts.includes(part)) || comparisonParts.some(part => targetParts.includes(part))) {
+            return "orange";
+        }
+
+        // No match
+        return "red";
+    }
+    changeTdBackground(searchText, color) {
+        const szuloElem = $(".tarolo");
+
+        // Find the td element that contains the specified text
+        const targetTd = szuloElem.find("table td").filter(function () {
+            return $(this).text().includes(searchText);
+        });
+
+        // Change the background color if the element is found
+        if (targetTd.length > 0) {
+            targetTd.css('background-color', color);
+        }
+    }
+
 
     egyenmegjelenites(list) {
-        console.log(list);
         const szuloElem = $(".tarolo");
         if (list && list.length > 0 && this.$randomInt < list.length + 1) {
             const selectedItem = list[this.$randomInt];
@@ -86,9 +132,8 @@ class Controller {
     } */
 
     megjelenitesnevvel(list, nev, success = false) {
-        console.log(list);
         const szuloElem = $(".tarolo");
-
+    
         if (list && !Array.isArray(list) && typeof list === 'object') {
             list = [list];
         }
@@ -98,21 +143,22 @@ class Controller {
     
             if (matchingItem) {
                 const megjelenito = new PublicMegjelenitnev(matchingItem, szuloElem, nev);
+    
+                // Change the color of the row containing the matching item
+                if (success) {
+                    const matchingTd = szuloElem.find(`table td:contains('${nev}')`);
+                    matchingTd.closest('tr').css('background-color', 'green');
+                }
             } else {
                 console.log(`No element found with nev ${nev}`);
             }
         } else {
             console.log("The provided list is not an array or is empty");
         }
-        
-        if (success) {
-            const tdElements = szuloElem.find("table td");
-            tdElements.css('background-color', 'green');
-        }
-        }
-    
-    
-    
+    }
+
+
+
     hibakezeles(uzenet) {
         console.log(uzenet);
     }
