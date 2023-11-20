@@ -1,6 +1,6 @@
 export const urlap ={
     nev:{
-        megj:"Hős Neve:",
+        megj:"Hős Neve",
         type:"text",
         placeholder:"",
         value:"",

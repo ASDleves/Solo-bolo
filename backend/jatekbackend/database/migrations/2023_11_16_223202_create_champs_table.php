@@ -53,6 +53,16 @@ return new class extends Migration
             'szarmazas'=>'Runaterra, Targon',
             'megjelenes'=>2016,
         ]);
+        Champ::create([
+            'nev'=>'Camille',
+            'nem'=>'Nő',
+            'pozicio'=>'Top',
+            'faj'=>'Cyborg, Ember',
+            'nyersanyag'=>'mana',
+            'fegyver'=>'Közelharcos',
+            'szarmazas'=>'Piltover',
+            'megjelenes'=>2016,
+        ]);
     }
     
 

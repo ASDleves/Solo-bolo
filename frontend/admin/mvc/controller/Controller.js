@@ -4,8 +4,8 @@ import UrlapModel from "../modell/UrlapModel.js";
 import Megjelenit from "../view/TablazatView/TablazatMegjelenit.js";
 class Controller{
     constructor(){
-        this.urlapModel = new UrlapModel();
-        this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
+        //this.urlapModel = new UrlapModel();
+        //this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
         this.dataService = new DataService();
         this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
         this.submitElem = $("#submit")

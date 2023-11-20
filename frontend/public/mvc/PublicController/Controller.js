@@ -9,7 +9,7 @@ import PublicMegjelenitnev from "../PublicView/PublicTablazat/PublicMegjelenites
 class Controller {
     constructor() {
         // Initialize randomInt as a property of the class
-        this.$randomInt = Math.floor(Math.random() * 3) + 1;
+        this.$randomInt = Math.floor(Math.random() * 4) + 1;
         console.log(this.$randomInt);
 
         this.dataService = new DataService();
@@ -21,7 +21,15 @@ class Controller {
 
         this.publicDataService.getPublicAxiosData("http://localhost:8000/api/champs", this.$randomInt, (response) => {
             console.log(response.nev);
-            this.Hasonlit = response.nev
+            this.Hasonlitnev = response.nev
+            this.Hasonlitnem = response.nem
+            this.Hasonlitpozicio = response.pozicio
+            this.Hasonlitfaj = response.faj
+            this.Hasonlitnyersanyag = response.nyersanyag
+            this.Hasonlitfegyver = response.fegyver
+            this.Hasonlitszarmazas = response.szarmazas
+            this.Hasonlitmegjelenes = response.megjelenes
+            console.log(this.Hasonlitnem)
         }, this.hibakezeles);
         this.submitElem = $("#submit");
         this.textInputElem = $("#nev");
@@ -30,15 +38,33 @@ class Controller {
             event.preventDefault();
             let textValue = this.textInputElem.val();
         
-            if (textValue === this.Hasonlit) {
+            if (textValue === this.Hasonlitnev) {
                 console.log("Nyertél");
-                console.log(textValue)
+                console.log(textValue);
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
-                    this.megjelenitesnevvel(response, textValue, true);
-                }, this.hibakezeles)
+                    this.megjelenitesnevvel(response, textValue, true); // Pass true for success
+                }, this.hibakezeles);
             } else {
                 console.log("Nem jó a hős");
+                this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (visszater) => {
+                    this.megjelenitesnevvel(visszater, textValue, false);
+                    this.Hasonlitasnev = visszater.nev
+                    this.Hasonlitasnem = visszater.nem
+                    this.Hasonlitaspozicio = visszater.pozicio
+                    this.Hasonlitasfaj = visszater.faj
+                    this.Hasonlitasnyersanyag = visszater.nyersanyag
+                    this.Hasonlitasfegyver = visszater.fegyver
+                    this.Hasonlitasszarmazas = visszater.szarmazas
+                    this.Hasonlitasmegjelenes = visszater.megjelenes
+                    console.log(this.Hasonlitasnem)
+                }, this.hibakezeles);
+                console.log(this.Hasonlitnem+"asd")
+                console.log(this.Hasonlitasnem+"asddd")
+                if (this.Hasonlitnem == this.Hasonlitasnem){
+                    
+                }
             }
+            this.textInputElem.val('');
         });
     }
 
@@ -62,10 +88,9 @@ class Controller {
     megjelenitesnevvel(list, nev, success = false) {
         console.log(list);
         const szuloElem = $(".tarolo");
-    
-        // Check if 'list' is an object and convert it to an array if it's not
+
         if (list && !Array.isArray(list) && typeof list === 'object') {
-            list = [list]; // Convert the object to an array containing that object
+            list = [list];
         }
     
         if (list && Array.isArray(list) && list.length > 0) {
@@ -80,9 +105,10 @@ class Controller {
             console.log("The provided list is not an array or is empty");
         }
         
-            if (success) {
-                szuloElem.children("table").css('background-color', 'green');
-            }
+        if (success) {
+            const tdElements = szuloElem.find("table td");
+            tdElements.css('background-color', 'green');
+        }
         }
     
     
