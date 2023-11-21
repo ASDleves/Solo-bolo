@@ -14,7 +14,7 @@ export const urlapleiro ={
         placeholder:"",
         value:"",
 
-        regex:"[A-Z][a-z]{2,15}",
+        regex:"[A-Z][a-z]{1,15}",
         valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
     },
     pozicio:{
