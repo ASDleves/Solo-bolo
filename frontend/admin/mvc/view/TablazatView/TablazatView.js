@@ -7,7 +7,7 @@ class TablazatView {
         this.#adat = adat;
         this.tablaElem = szuloElem;
         if (this.tablaElem.children("tr").length === 0) {
-            this.#generateHeaderRow(); // Generate and append the header row only if it doesn't exist
+            this.#generateHeaderRow();
         }
         this.#sor();
         this.sorElem = this.tablaElem.children("tr:last-child");
@@ -15,16 +15,22 @@ class TablazatView {
         this.szerkesztElem = this.sorElem.children("td").children(".szerkeszt");
         this.szerkesztElem.on("click", () => {
             this.#szerkesztesMode = !this.#szerkesztesMode;
-
+        
             if (this.#szerkesztesMode) {
                 this.szerkesztElem.text("Mentés");
                 this.#szerkesztesMegjelenit();
             } else {
                 this.szerkesztElem.text("🛠");
                 this.#szerkesztesBezar();
-                console.log(this.tablaElem.children("tr:last-child"));
+                // Gyűjtsük össze az adatokat
+                let sorAdatok = {};
+                const fields = ['id','nev', 'nem', 'pozicio', 'faj', 'nyersanyag', 'fegyver', 'szarmazas', 'megjelenes'];
+                fields.forEach(field => {
+                    sorAdatok[field] = this.#adat[field];
+                });
+                // Trigger a custom event here
+                $(this.szerkesztElem).trigger("mentesClicked", [sorAdatok]);
             }
-            
         });
         this.torolElem.on("click", () => {
             this.sorElem.remove();
@@ -44,7 +50,8 @@ class TablazatView {
         ];
     
         fields.forEach((field, index) => {
-            this.sorElem.find(`td:nth-child(${index + 1})`).html(
+            // Adjust the index to account for the id column
+            this.sorElem.find(`td:nth-child(${index + 2})`).html(
                 `<input type="text" class="${field.class}" value="${this.#adat[field.key]}">`
             );
         });
@@ -63,11 +70,13 @@ class TablazatView {
         ];
     
         fields.forEach((field, index) => {
+            // Again, adjust the index to account for the id column
             const modifiedValue = this.sorElem.find(`.${field.class}`).val();
             this.#adat[field.key] = modifiedValue;
-            this.sorElem.find(`td:nth-child(${index + 1})`).html(modifiedValue);
+            this.sorElem.find(`td:nth-child(${index + 2})`).html(modifiedValue);
         });
         this.#printSorValues();
+
     }
     #printSorValues() {
         this.sorElem.children('td').each(function(index, td) {
@@ -86,7 +95,7 @@ class TablazatView {
     }
     #generateHeaderRow() {
         let headerRow = "<tr>";
-        const excludedKeys = ['id','created_at', 'updated_at']; 
+        const excludedKeys = ['created_at', 'updated_at']; 
         Object.keys(this.#adat).forEach(key => {
             if (!excludedKeys.includes(key)) {
             headerRow += `<th>${key}</th>`;
@@ -99,7 +108,7 @@ class TablazatView {
         
         let txt = "<tr>";
 
-        const excludedKeys = ['id','created_at', 'updated_at']; 
+        const excludedKeys = ['created_at', 'updated_at']; 
         
         Object.entries(this.#adat).forEach(([key, value]) => {
             if (!excludedKeys.includes(key)) {

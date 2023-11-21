@@ -4,8 +4,8 @@ import UrlapModel from "../modell/UrlapModel.js";
 import Megjelenit from "../view/TablazatView/TablazatMegjelenit.js";
 class Controller{
     constructor(){
-        //this.urlapModel = new UrlapModel();
-        //this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
+        this.urlapModel = new UrlapModel();
+        this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
         this.dataService = new DataService();
         this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
         this.submitElem = $("#submit")
@@ -26,25 +26,33 @@ class Controller{
                 })
             } else {
                 console.log("Nem valid az űrlap!")
+                
             }
-            this.dataService.postAxiosData("http://localhost:8000/api/champs", {
-                "nev": urlapadat.nev,
-                "szul": urlapadat.szul
-            });
+            /* this.dataService.postAxiosData("http://localhost:8000/api/champs", {
+                "nev": "urlapadat.nev",
+                "nem": "Mind2",
+                "pozicio": "Tesztelő",
+                "faj": "Robot",
+                "nyersanyag": "Nincs",
+                "fegyver": "Ököl",
+                "szarmazas": "Hun",
+                "megjelenes": 2023,
+
+            }); *///MŰKÖDÖ POST//
             console.log(urlapadat)
             
         })
         $(window).on("torles", (event) => {
-            console.log(event.detail);
-            console.log("szia")
-            console.log(event.detail.id)
             this.dataService.deleteAxiosData("http://localhost:8000/api/champs", event.detail.id)
         
         });
+        $(window).on("mentesClicked", (event, sorAdatok) => {
+            this.dataService.putAxiosData("http://localhost:8000/api/champs",sorAdatok);
+        });
+
 
     }
     megjelenites(list){
-        console.log(list)
         const szuloElem = $(".tarolo");
         const megjelenito = new Megjelenit(list, szuloElem);
         

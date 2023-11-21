@@ -31,15 +31,6 @@ class UrlapView {
                 case "text":
                     this.#urlapElemList.push(new TextUrlapElem(key, this.#leiro[key], this.formelem))
                     break;
-                case "number":
-                    this.#urlapElemList.push(new NumberUrlapElem(key, this.#leiro[key], this.formelem))
-                    break;
-                /* case "select":
-                    this.#urlapElemList.push(new SelectUrlapElem(key, this.#leiro[key], this.formelem))
-                    break;
-                case "radio":
-                    this.#urlapElemList.push(new RadioUrlapElem(key, this.#leiro[key], this.formelem))
-                    break; */
                 default:
 
             }

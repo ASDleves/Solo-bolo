@@ -47,7 +47,6 @@ class Controller {
                 console.log("Nem jó a hős");
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, false);
-                    console.log(response.nem)
                     this.Mnev = response.nev
                     this.Mnem = response.nem
                     this.Mpozi = response.pozicio
