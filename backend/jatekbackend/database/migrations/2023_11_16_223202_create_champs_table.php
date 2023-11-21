@@ -380,7 +380,7 @@ return new class extends Migration
             'faj'=>'Ember/Varázsló',
             'nyersanyag'=>'mana',
             'fegyver'=>'Közelharcos',
-            'szarmazas'=>'Demacia/Freljord',
+            'szarmazas'=>'Demácia/Freljord',
             'megjelenes'=>2019,
         ]);
         Champ::create([

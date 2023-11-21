@@ -14,9 +14,7 @@ class Controller{
             let urlapelemLista = this.urlapView.getUrlapElemList();
             let urlapadat = this.urlapView.getUrlapadatok();
             let isFormValid = true; 
-            urlapelemLista.forEach((elem) => {
-                isFormValid = isFormValid && elem.getvalid();
-            });
+            console.log(urlapadat)
             if (isFormValid) {
                 console.log("valid az űrlap!")
                 urlapelemLista.forEach((elem) => {
@@ -24,22 +22,23 @@ class Controller{
                     let kulcs = elem.key
                     urlapadat[kulcs] = ertek
                 })
+                console.log(urlapadat.nev)
+            this.dataService.postAxiosData("http://localhost:8000/api/champs", {
+                "nev": urlapadat.nev,
+                "nem": urlapadat.nem,
+                "pozicio": urlapadat.pozicio,
+                "faj": urlapadat.faj,
+                "nyersanyag": urlapadat.nyersanyag,
+                "fegyver": urlapadat.fegyver,
+                "szarmazas": urlapadat.szarmazas,
+                "megjelenes": urlapadat.megjelenes,
+
+            });
             } else {
                 console.log("Nem valid az űrlap!")
                 
             }
-            /* this.dataService.postAxiosData("http://localhost:8000/api/champs", {
-                "nev": "urlapadat.nev",
-                "nem": "Mind2",
-                "pozicio": "Tesztelő",
-                "faj": "Robot",
-                "nyersanyag": "Nincs",
-                "fegyver": "Ököl",
-                "szarmazas": "Hun",
-                "megjelenes": 2023,
-
-            }); *///MŰKÖDÖ POST//
-            console.log(urlapadat)
+            
             
         })
         $(window).on("torles", (event) => {

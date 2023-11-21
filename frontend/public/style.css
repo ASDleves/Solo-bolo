@@ -35,6 +35,15 @@ td,th {
     margin: auto;
     text-align: center;
 }
+.urlap {
+    display: flex; /* Use flexbox to align children elements inline */
+    align-items: center; /* Align form elements vertically */
+    justify-content: flex-start; /* Align form elements to the start of the flex container */
+}
+
+.formelem {
+    margin-right: 10px; /* Add space between the form and the button */
+}
 .tarolo{
     padding-top: 15px;
 }

@@ -31,7 +31,7 @@ class UrlapView {
             }
 
         }
-        txt += "<input type='submit' id='submit' value='ok'>"
+        
         this.formelem.append(txt)
         
     }

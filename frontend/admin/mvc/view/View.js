@@ -31,12 +31,14 @@ class UrlapView {
                 case "text":
                     this.#urlapElemList.push(new TextUrlapElem(key, this.#leiro[key], this.formelem))
                     break;
+                case "number":
+                    this.#urlapElemList.push(new NumberUrlapElem(key, this.#leiro[key], this.formelem))
                 default:
 
             }
 
         }
-        txt += "<input type='submit' id='submit' value='ok'>"
+        txt += "<input type='submit' id='submit' value='Feltöltés'>"
         this.formelem.append(txt)
         
     }
