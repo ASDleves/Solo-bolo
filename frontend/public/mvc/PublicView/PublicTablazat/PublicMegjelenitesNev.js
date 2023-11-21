@@ -7,9 +7,7 @@ class PublicMegjelenitnev {
         this.#data = data;
         this.#nev = nev;
         
-        // Check if the table already exists
         if (szuloElem.children("table").length === 0) {
-            // If no table exists, create one
             szuloElem.append(`<table class="table table-bordered table-striped">`);
         }
         this.tablaElem = szuloElem.children("table");
@@ -18,8 +16,6 @@ class PublicMegjelenitnev {
     }
 
     tablazatbaIr() {
-        console.log(this.#nev);
-        // Clear existing rows in the table except the header
         this.tablaElem.find("tbody").empty(); 
 
         if (this.#data && this.#data.nev === this.#nev) {

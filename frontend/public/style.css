@@ -21,8 +21,26 @@ main{
     max-width: 800px;
 }
 .table{
+    width: 100%;
+    text-align: center;
+    border: 2px solid black;
+    border-collapse: collapse; 
+}
+td,th {
+    border: 2px solid black; /* Adds a border to all table cells */
+    padding: 8px; /* Optional: adds some padding inside the cells */
+  }
+.jatek{
+    padding-top: 20px;
+    margin: auto;
     text-align: center;
 }
+.tarolo{
+    padding-top: 15px;
+}
+.goodcell, .mediumcell, .badcell {
+    border: 1px solid black; /* This adds a border to cells with these classes */
+  }
 .goodcell {
     background-color: green;
 }

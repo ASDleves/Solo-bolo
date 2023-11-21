@@ -46,16 +46,13 @@ class Controller {
             }
             if (textValue === this.Hasonlitnev) {
                 console.log("Nyertél");
-                console.log(textValue)
-                console.log(this.Hasonlitnev)
+
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, true);
                 }, this.hibakezeles);
                 this.createRestartButton();
             } else {
                 console.log("Nem jó a hős");
-                console.log(textValue)
-                console.log(this.Hasonlitnev)
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, false);
                     this.Mnev = response.nev
