@@ -9,8 +9,6 @@ import PublicMegjelenitnev from "../PublicView/PublicTablazat/PublicMegjelenites
 class Controller {
     constructor() {
         // Initialize randomInt as a property of the class
-        this.$randomInt = Math.floor(Math.random() * 165) + 1;
-        console.log(this.$randomInt);
 
         this.dataService = new DataService();
         this.publicDataService = new PublicDataService();
@@ -19,6 +17,12 @@ class Controller {
 
         // this.dataService.getAxiosData("http://localhost:8000/api/champs", this.egyenmegjelenites.bind(this), this.hibakezeles);
 
+        this.Jatek();
+    }
+
+    Jatek(){
+        this.$randomInt = Math.floor(Math.random() * 165) + 1;
+        console.log(this.$randomInt);
         this.publicDataService.getPublicAxiosData("http://localhost:8000/api/champs", this.$randomInt, (response) => {
             console.log(response);
             this.Hasonlitnev = response.nev
@@ -29,22 +33,29 @@ class Controller {
             this.Hasonlitfegyver = response.fegyver
             this.Hasonlitszarmazas = response.szarmazas
             this.Hasonlitmegjelenes = response.megjelenes
-            console.log(this.Hasonlitnem)
         }, this.hibakezeles);
         this.submitElem = $("#submit");
         this.textInputElem = $("#nev");
 
         this.submitElem.on("click", (event) => {
             event.preventDefault();
-            let textValue = this.textInputElem.val();
+            let textValue = this.textInputElem.val().trim();
 
+            if (textValue === "") {
+                return; 
+            }
             if (textValue === this.Hasonlitnev) {
                 console.log("Nyertél");
+                console.log(textValue)
+                console.log(this.Hasonlitnev)
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
-                    this.megjelenitesnevvel(response, textValue, true); // Pass true for success
+                    this.megjelenitesnevvel(response, textValue, true);
                 }, this.hibakezeles);
+                this.createRestartButton();
             } else {
                 console.log("Nem jó a hős");
+                console.log(textValue)
+                console.log(this.Hasonlitnev)
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, false);
                     this.Mnev = response.nev
@@ -81,12 +92,24 @@ class Controller {
             this.textInputElem.val('');
         });
     }
+    createRestartButton() {
+        const restartButton = $("<button>Új játék</button>");
+        restartButton.addClass("restart-game");
+        $(".jatek").append(restartButton); 
+
+   
+        restartButton.on("click", () => {
+            this.clearTable();
+            this.Jatek();
+            restartButton.remove();
+        });
+    }
+    clearTable() {
+        $(".tarolo").find("table").remove();
+    }
     compareAttributes(targetAttribute, comparisonAttribute) {
         const targetParts = targetAttribute.split('/');
         const comparisonParts = comparisonAttribute.split('/');
-        console.log(targetParts)
-        console.log(comparisonParts)
-        // Check for exact match (all parts match)
         if (targetParts.every(part => comparisonParts.includes(part)) && comparisonParts.every(part => targetParts.includes(part))) {
             return "green";
         }
