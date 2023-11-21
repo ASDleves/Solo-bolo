@@ -71,7 +71,7 @@ export const urlapleiro ={
             min:2007,
             max:2023
         },
-        valid:"1000 és 2023 közötti számot irj!"
+        valid:"2007 és 2023 közötti számot irj!"
 
     }
 

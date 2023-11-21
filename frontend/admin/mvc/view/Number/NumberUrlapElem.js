@@ -12,7 +12,8 @@ class NumberUrlapElem {
         this.inputElem = $(`#${this.#key}`);
         this.validElem = this.formelem.children("div:last-child").children(".valid");
         this.invalidElem = this.formelem.children("div:last-child").children(".invalid");
-
+        this.invalidElem.hide();
+        this.validElem.hide();
         this.inputElem.on("input", () => { 
             this.#ertek = this.inputElem.val();
             let min = this.#elemLeiro.regex.min;
@@ -20,16 +21,16 @@ class NumberUrlapElem {
             
             if (!isNaN(this.#ertek) && this.#ertek >= min && this.#ertek <= max) {
                 this.#valid = true;
-                this.validElem.removeClass("lathatosag");
-                this.invalidElem.addClass("lathatosag");
+                this.validElem.show(); // Assuming you have a method to show the element
+                this.invalidElem.hide(); // Assuming you have a method to hide the element
             } else {
                 this.#valid = false;
-                this.validElem.addClass("lathatosag");
-                this.invalidElem.removeClass("lathatosag");
+                this.validElem.hide();
+                this.invalidElem.show();
             }
         });
+        
     }
-
     getvalid() {
         return this.#valid;
     }

@@ -11,21 +11,22 @@ class TextUrlapElem{
         this.inputElem=$(`#${this.#key}`)
         this.validElem=this.formelem.children("div:last-child").children(".valid")
         this.invalidElem=this.formelem.children("div:last-child").children(".invalid")
-        this.inputElem.on("keyup",()=>{
-            this.#ertek=this.inputElem.val()
-            let reg=this.#elemLeiro.regex
-            let regReg = new RegExp(reg)
-            if (regReg.test(this.#ertek)){
-                this.#valid=true
-                this.validElem.removeClass("lathatosag")
-            this.invalidElem.addClass("lathatosag") 
-            }else{
-                this.#valid = false
-                this.validElem.addClass("lathatosag")
-                this.invalidElem.removeClass("lathatosag")
-        }
-            
-        })
+        this.invalidElem.hide();
+        this.validElem.hide();
+        this.inputElem.on("keyup", () => {
+            this.#ertek = this.inputElem.val();
+            let reg = this.#elemLeiro.regex;
+            let regReg = new RegExp(reg);
+            if (regReg.test(this.#ertek)) {
+                this.#valid = true;
+                this.validElem.show();
+                this.invalidElem.hide();
+            } else {
+                this.#valid = false;
+                this.validElem.hide();
+                this.invalidElem.show();
+            }
+        });
 
     }
     getvalid(){

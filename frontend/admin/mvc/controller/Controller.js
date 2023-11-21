@@ -14,7 +14,9 @@ class Controller{
             let urlapelemLista = this.urlapView.getUrlapElemList();
             let urlapadat = this.urlapView.getUrlapadatok();
             let isFormValid = true; 
-            console.log(urlapadat)
+            urlapelemLista.forEach((elem) => {
+                isFormValid = isFormValid && elem.getvalid();
+            });
             if (isFormValid) {
                 console.log("valid az űrlap!")
                 urlapelemLista.forEach((elem) => {
