@@ -9,8 +9,8 @@ class PontController extends Controller
 {
     
     public function mutat($user_id) {
-        $pont = Pont::where('user_id', $user_id)->first();
-        return response()->json($pont);
+        $pontok = Pont::where('user_id', $user_id)->get();
+        return response()->json($pontok);
     }
     
 }

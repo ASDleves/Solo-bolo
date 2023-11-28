@@ -14,8 +14,4 @@ class Controller extends BaseController
         return response()->json($users);
 
     }
-    public function getUserWithPont($id) {
-        $user = User::with('pont')->find($id);
-        return response()->json($user);
-    }
 }

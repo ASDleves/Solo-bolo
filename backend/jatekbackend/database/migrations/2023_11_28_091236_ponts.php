@@ -17,8 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('pont');
-            $table->integer('Streak');
+            $table->integer('OneShot');
             $table->integer('Összes_Tipp');
+            $table->string('Season');
             $table->timestamps();
         });
 
@@ -31,12 +32,37 @@ return new class extends Migration
             'updated_at' => now(),
         ]);
 
-        // Insert a record into 'ponts' table
+        DB::table('ponts')->insert([
+            'user_id' => $userId,
+            'pont' => 13,
+            'OneShot' => 10,
+            'Összes_Tipp'=> 60,
+            'Season'=> 'Season 1',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         DB::table('ponts')->insert([
             'user_id' => $userId,
             'pont' => 0,
-            'Streak' => 0,
+            'OneShot' => 0,
             'Összes_Tipp'=> 0,
+            'Season'=> 'Season 2',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Vöri',
+            'email' => 'Vörike@gmail.com',
+            'password' => Hash::make('test1234'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('ponts')->insert([
+            'user_id' => 1001,
+            'pont' => 15,
+            'OneShot' => 4,
+            'Összes_Tipp'=> 30,
+            'Season'=> 'Season 1',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

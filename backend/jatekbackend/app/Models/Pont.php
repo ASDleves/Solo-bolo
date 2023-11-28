@@ -11,7 +11,8 @@ class Pont extends Model
     protected $fillable = [
         'user_id',
         'pont',
-        'Streak',
+        'OneShot',
         'Összes_Tipp',
+        'Season',
     ];
 }
