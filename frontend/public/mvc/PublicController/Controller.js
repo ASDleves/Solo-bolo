@@ -1,10 +1,12 @@
-import DataService from "../../../admin/mvc/modell/DataService.js";
+import DataService from "../../../admin/Champs/mvc/modell/DataService.js";
 import UrlapModel from "../PublicModell/PublicUrlapModel.js";
 import PublicDataService from "../PublicModell/PublicDataService.js";
 import UrlapView from "../PublicView/PublicView.js";
 import PublicMegjelenit from "../PublicView/PublicTablazat/PublicMegjelen.js";
 import PublicMegjelenitegesz from "../PublicView/PublicTablazat/PublicMegjelenEgesz.js";
 import PublicMegjelenitnev from "../PublicView/PublicTablazat/PublicMegjelenitesNev.js";
+
+import PublicSoreleje from "../PublicView/PublicTablazat/PublicSoreleje.js";
 
 class Controller {
     constructor() {
@@ -21,6 +23,7 @@ class Controller {
     }
 
     Jatek(){
+        let szamlalo = 0
         this.$randomInt = Math.floor(Math.random() * 165) + 1;
         console.log(this.$randomInt);
         this.publicDataService.getPublicAxiosData("http://localhost:8000/api/champs", this.$randomInt, (response) => {
@@ -48,10 +51,13 @@ class Controller {
                 console.log("Nyertél");
 
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
-                    this.megjelenitesnevvel(response, textValue, true);
+                    this.megjelenitsoreleje(response, textValue, true);
                 }, this.hibakezeles);
                 this.createRestartButton();
-            } else {
+                szamlalo = 0
+            } else{
+                if (szamlalo = 0){
+                    szamlalo += 1
                 console.log("Nem jó a hős");
                 this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
                     this.megjelenitesnevvel(response, textValue, false);
@@ -84,7 +90,41 @@ class Controller {
                     const colorFormegjelen = (this.Mmegjelen === this.Hasonlitmegjelenes) ? "green" : "red";
                     this.changeTdBackground(this.Mmegjelen, colorFormegjelen);  
                 }, this.hibakezeles);
+            }else{
+                szamlalo += 1
+                console.log("Nem jó a hős");
+                this.publicDataService.getPublicnevAxiosData("http://localhost:8000/api/champs/nev", textValue, (response) => {
+                    this.megjelenitsoreleje(response, textValue, false);
+                    this.Mnev = response.nev
+                    this.Mnem = response.nem
+                    this.Mpozi = response.pozicio
+                    this.Mfaj = response.faj
+                    this.Mnyers = response.nyersanyag
+                    this.Mfegyver = response.fegyver
+                    this.Mszarmaz = response.szarmazas
+                    this.Mmegjelen = response.megjelenes
+                    const colorForNem = (this.Mnem === this.Hasonlitnem) ? "green" : "red";
+                    this.changeTdBackground(this.Mnem, colorForNem);
 
+                    // Use the new comparison function for positions
+                    const colorForPozicio = this.compareAttributes(this.Mpozi, this.Hasonlitpozicio);
+                    this.changeTdBackground(this.Mpozi, colorForPozicio);
+
+                     const colorForFaj = this.compareAttributes(this.Mfaj, this.Hasonlitfaj);
+                    this.changeTdBackground(this.Mfaj, colorForFaj);
+
+                    const colorForNyersanyag = this.compareAttributes(this.Mnyers, this.Hasonlitnyersanyag);
+                    this.changeTdBackground(this.Mnyers, colorForNyersanyag);
+
+                    const colorForfegyver = this.compareAttributes(this.Mfegyver, this.Hasonlitfegyver);
+                    this.changeTdBackground(this.Mfegyver, colorForfegyver);
+ 
+                    const colorForszarmaz = this.compareAttributes(this.Mszarmaz, this.Hasonlitszarmazas);
+                    this.changeTdBackground(this.Mszarmaz, colorForszarmaz);
+                    const colorFormegjelen = (this.Mmegjelen === this.Hasonlitmegjelenes) ? "green" : "red";
+                    this.changeTdBackground(this.Mmegjelen, colorFormegjelen);  
+                }, this.hibakezeles);
+            }
             }
             this.textInputElem.val('');
         });
@@ -175,6 +215,32 @@ class Controller {
             console.log("The provided list is not an array or is empty");
         }
     }
+    megjelenitsoreleje(list, nev, success = false) {
+        const szuloElem = $(".tarolo");
+    
+        if (list && !Array.isArray(list) && typeof list === 'object') {
+            list = [list];
+        }
+    
+        if (list && Array.isArray(list) && list.length > 0) {
+            const matchingItem = list.find(item => item.nev === nev);
+    
+            if (matchingItem) {
+                const megjelenito = new PublicSoreleje(matchingItem, szuloElem, nev);
+    
+                // Change the color of the row containing the matching item
+                if (success) {
+                    const matchingTd = szuloElem.find(`table td:contains('${nev}')`);
+                    matchingTd.closest('tr').css('background-color', 'green');
+                }
+            } else {
+                console.log(`No element found with nev ${nev}`);
+            }
+        } else {
+            console.log("The provided list is not an array or is empty");
+        }
+    }
+
 
 
 

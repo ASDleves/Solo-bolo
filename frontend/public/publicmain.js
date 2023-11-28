@@ -1,4 +1,4 @@
-import Controller from "./mvc/PublicController/Controller.js"
+import Controller from "../public/mvc/PublicController/Controller.js"
 
 
 $(function (){

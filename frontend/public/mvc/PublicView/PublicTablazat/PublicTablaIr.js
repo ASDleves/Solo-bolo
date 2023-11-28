@@ -36,7 +36,12 @@ class PublicTablabaIr {
             }
         });
         txt += "</tr>";
+
+        // Append the new row to the table
         this.tablaElem.append(txt);
+
+        // Update sorElem to refer to the newly created row
+        this.sorElem = this.tablaElem.children("tr:last-child");
     }
 
     #esemenyTrigger(esemenyNeve) {
