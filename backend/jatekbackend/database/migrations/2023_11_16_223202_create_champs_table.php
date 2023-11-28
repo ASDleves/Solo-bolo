@@ -270,7 +270,7 @@ return new class extends Migration
             'faj'=>'Ember/Varázsló',
             'nyersanyag'=>'mana',
             'fegyver'=>'Távolharcos',
-            'szarmazas'=>'Icathia/Runaterra/Shurima',
+            'szarmazas'=>'Icathia/Runeterra/Shurima',
             'megjelenes'=>2009,
         ]);
         Champ::create([
@@ -814,7 +814,7 @@ return new class extends Migration
             'megjelenes'=>2009,
         ]);
         Champ::create([
-            'nev'=>'Ryzre',
+            'nev'=>'Ryze',
             'nem'=>'Férfi',
             'pozicio'=>'Mid/Top',
             'faj'=>'Ember/Varázslatosan megváltozott',

@@ -50,6 +50,15 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('ponts')->insert([
+            'user_id' => $userId,
+            'pont' => 5,
+            'OneShot' => 1,
+            'Összes_Tipp'=> 6321,
+            'Season'=> 'Season 3',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         DB::table('users')->insert([
             'name' => 'Vöri',
             'email' => 'Vörike@gmail.com',
