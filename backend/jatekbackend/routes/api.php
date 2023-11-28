@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\ChampController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\PontController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,6 @@ Route::get('/champs/{id}', [ChampController::class, 'show']);
 Route::post('/champs', [ChampController::class, 'store']);
 Route::put('/champs/{id}', [ChampController::class, 'update']);
 Route::delete('/champs/{id}', [ChampController::class, 'destroy']);
+
+Route::get('/users', [Controller::class, 'index']);
+Route::get('/ponts/{user_id}', [PontController::class, 'mutat']);

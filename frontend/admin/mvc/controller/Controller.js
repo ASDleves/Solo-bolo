@@ -7,7 +7,8 @@ class Controller{
         this.urlapModel = new UrlapModel();
         this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
         this.dataService = new DataService();
-        this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
+        this.dataService.getAxiosData("http://localhost:8000/api/users", this.megjelenitesProfil, this.hibakezeles);
+        //this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
         this.submitElem = $("#submit")
         this.submitElem.on("click", (event) => {
             event.preventDefault()
@@ -51,10 +52,15 @@ class Controller{
             this.dataService.putAxiosData("http://localhost:8000/api/champs",sorAdatok);
         });
 
-
+        
     }
     megjelenites(list){
         const szuloElem = $(".tarolo");
+        const megjelenito = new Megjelenit(list, szuloElem);
+        
+    }
+    megjelenitesProfil(list){
+        const szuloElem = $(".felhasznalo");
         const megjelenito = new Megjelenit(list, szuloElem);
         
     }
