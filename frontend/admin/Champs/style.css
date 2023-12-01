@@ -27,7 +27,11 @@
   width: 75px;
 }
 header{
-  height: 400px;
+  height: 100px;
+  text-align: center;
+}
+h1{
+  padding-top: 20px;
 }
 .adat input{
   width: 100%; /* Make input take up all available space */

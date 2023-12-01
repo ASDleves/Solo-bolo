@@ -22,6 +22,11 @@ class Controller {
             $('.megtekint').css('background-color', 'lightgray');
             $('.megtekint').css('color', 'black');
         });
+
+        $('#myModal').modal({
+            backdrop: 'static', // Disables closing by clicking outside of the modal
+            keyboard: false    
+        });
     }
     getPontsForUser(userId) {
         this.dataService.getAxiosData(`http://localhost:8000/api/ponts/${userId}`, this.megjelenitesModalban, this.hibakezeles);

@@ -163,16 +163,19 @@ class Controller {
     }
     changeTdBackground(searchText, color) {
         const szuloElem = $(".tarolo");
-
+    
         // Find the td element that contains the specified text
         const targetTd = szuloElem.find("table td").filter(function () {
             return $(this).text().includes(searchText);
         });
-
-        // Change the background color if the element is found
-        if (targetTd.length > 0) {
-            targetTd.css('background-color', color);
-        }
+    
+        // Change the background color if the element is found and hasn't been styled before
+        targetTd.each(function() {
+            if (!$(this).hasClass('styled')) {
+                $(this).css('background-color', color);
+                $(this).addClass('styled'); // Mark this td as styled
+            }
+        });
     }
 
 
