@@ -12,9 +12,11 @@ class UrlapView {
         this.szuloElem = szuloElem;
         this.szuloElem.append(`<form class="hosok">`)
         this.formelem = this.szuloElem.children("form")
+        this.#urlapLetrehoz()
         this.submitContainer = $('<div class="submit-container">');
         this.formelem.append(this.submitContainer);
-        this.#urlapLetrehoz()
+        this.submitContainer.append("<input type='submit' id='submit' value='Feltöltés'>");
+        
 
     }
     getUrlapElemList() {
@@ -46,7 +48,7 @@ class UrlapView {
         
     }
     this.formelem.append('</div>'); // Zárjuk le az utolsó sort
-        this.formelem.append("<input type='submit' id='submit' value='Feltöltés'>");
+        
     
     }
 

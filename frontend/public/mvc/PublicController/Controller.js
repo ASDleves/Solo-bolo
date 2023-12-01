@@ -42,8 +42,7 @@ class Controller {
 
         this.submitElem.on("click", (event) => {
             event.preventDefault();
-            let textValue = this.textInputElem.val().trim();
-
+            let textValue = this.capitalizeFirstLetter(this.textInputElem.val().trim());
             if (textValue === "") {
                 return; 
             }
@@ -128,6 +127,9 @@ class Controller {
             }
             this.textInputElem.val('');
         });
+    }
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
     createRestartButton() {
         const restartButton = $("<button>Új játék</button>");

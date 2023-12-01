@@ -112,11 +112,13 @@ class TablazatView {
         
         Object.entries(this.#adat).forEach(([key, value]) => {
             if (!excludedKeys.includes(key)) {
-                txt += `<td>${value}</td>`;
+                const stringValue = String(value);
+            const modifiedValue = stringValue.replace(/\//g, '<br>');
+            txt += `<td class="adat">${modifiedValue}</td>`;
             }
         });
     
-        txt += '<td><button class="szerkeszt">🛠</button><button class="torol">🗑️</button></td>';
+        txt += '<td class="adat"><button class="szerkeszt">🛠</button><button class="torol">🗑️</button></td>';
     
         txt += "</tr>";
         this.tablaElem.append(txt);
