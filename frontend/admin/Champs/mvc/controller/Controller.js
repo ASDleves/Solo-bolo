@@ -5,20 +5,29 @@ import Megjelenit from "../view/TablazatView/TablazatMegjelenit.js";
 class Controller{
     constructor(){
         this.urlapModel = new UrlapModel();
-        this.urlapView = new UrlapView($(".urlap"), this.urlapModel.leiro);
+        this.urlapView = new UrlapView($("#heroesModal .modal-body"), this.urlapModel.leiro);
         this.dataService = new DataService();
         this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
         this.submitElem = $("#submit")
         this.submitElem.on("click", (event) => {
-            event.preventDefault()
+            event.preventDefault();
             let urlapelemLista = this.urlapView.getUrlapElemList();
             let urlapadat = this.urlapView.getUrlapadatok();
-            let isFormValid = true; 
-            urlapelemLista.forEach((elem) => {
-                isFormValid = isFormValid && elem.getvalid();
-            });
+            let isFormValid = true;
+    
+            for (let elem of urlapelemLista) {
+                let ertek = elem.ertek;
+                let kulcs = elem.key;
+    
+                if (!elem.isValid()) {
+                    isFormValid = false;
+                    console.log("Form element invalid:", kulcs);
+                }
+                urlapadat[kulcs] = ertek;
+            }
+    
             if (isFormValid) {
-                console.log("valid az űrlap!")
+                console.log("Form is valid. Data:", urlapadat);
                 urlapelemLista.forEach((elem) => {
                     let ertek = elem.ertek
                     let kulcs = elem.key
@@ -36,6 +45,7 @@ class Controller{
                 "megjelenes": urlapadat.megjelenes,
 
             });
+            
             } else {
                 console.log("Nem valid az űrlap!")
                 
@@ -43,16 +53,28 @@ class Controller{
             
             
         })
+        $('#heroesModal').on('hidden.bs.modal', function() {
+            $('.hosok').trigger('reset');
+            
+            $('.valid.lathatosag').hide();
+            $('.invalid.lathatosag').hide();
+        });
+        $('#heroesModal').modal({
+            backdrop: 'static', // Disables closing by clicking outside of the modal
+            keyboard: false    
+        });
         $(window).on("torles", (event) => {
             this.dataService.deleteAxiosData("http://localhost:8000/api/champs", event.detail.id)
         
         });
         $(window).on("mentesClicked", (event, sorAdatok) => {
+            console.log(sorAdatok)
             this.dataService.putAxiosData("http://localhost:8000/api/champs",sorAdatok);
         });
 
         
     }
+    
     megjelenites(list){
         const szuloElem = $(".tarolo");
         const megjelenito = new Megjelenit(list, szuloElem);

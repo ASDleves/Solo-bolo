@@ -29,6 +29,9 @@ class TextUrlapElem{
         });
 
     }
+    isValid() {
+        return this.#valid;
+    }
     getvalid(){
         return this.#valid
     }
@@ -42,15 +45,14 @@ class TextUrlapElem{
     #textElem(key){    
         let txt=""
             txt+=`
-            <div class="mb-3 mt-3">
-                <label for="${this.#key}" class="form-label">${this.#elemLeiro.megj}:</label>
-                <input type="${this.#elemLeiro.type}" class="form-control" id="${this.#key}" 
-                placeholder="${this.#elemLeiro.placeholder}" value="${this.#elemLeiro.value}"
-                pattern="${this.#elemLeiro.regex}">
-
-                <div class="valid lathatosag">OK</div>
-                <div class="invalid lathatosag">${this.#elemLeiro.valid}</div>
-            </div>
+            <div class="col-md-6 mb-3">
+            <label for="${this.#key}" class="form-label">${this.#elemLeiro.megj}:</label>
+            <input type="${this.#elemLeiro.type}" class="form-control" id="${this.#key}" 
+            placeholder="${this.#elemLeiro.placeholder}" value="${this.#elemLeiro.value}"
+            pattern="${this.#elemLeiro.regex}">
+            <div class="valid lathatosag">OK</div>
+            <div class="invalid lathatosag">${this.#elemLeiro.valid}</div>
+        </div>
             `
             this.formelem.append(txt)
     

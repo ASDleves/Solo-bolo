@@ -7,10 +7,13 @@ class UrlapView {
     #valid = true
     #urlapAdatok = {}
     constructor(szuloElem, leiro) {
+
         this.#leiro = leiro;
         this.szuloElem = szuloElem;
-        this.szuloElem.append("<form>")
+        this.szuloElem.append(`<form class="hosok">`)
         this.formelem = this.szuloElem.children("form")
+        this.submitContainer = $('<div class="submit-container">');
+        this.formelem.append(this.submitContainer);
         this.#urlapLetrehoz()
 
     }
@@ -25,26 +28,27 @@ class UrlapView {
     }
 
     #urlapLetrehoz() {
-        let txt = ""
+        this.formelem.append('<div class="row">'); // Kezdődik a sor
         for (const key in this.#leiro) {
+            let formElement;
             switch (this.#leiro[key].type) {
                 case "text":
-                    this.#urlapElemList.push(new TextUrlapElem(key, this.#leiro[key], this.formelem))
+                    formElement = new TextUrlapElem(key, this.#leiro[key], this.formelem.children('.row:last-child'));
                     break;
                 case "number":
-                    this.#urlapElemList.push(new NumberUrlapElem(key, this.#leiro[key], this.formelem))
-                default:
-
+                    formElement = new NumberUrlapElem(key, this.#leiro[key], this.formelem.children('.row:last-child'));
+                    break;
+                // ... other cases ...
             }
-
-        }
-        txt += "<input type='submit' id='submit' value='Feltöltés'>"
-        this.formelem.append(txt)
+            if (formElement) {
+                this.#urlapElemList.push(formElement);
+            }
         
     }
+    this.formelem.append('</div>'); // Zárjuk le az utolsó sort
+        this.formelem.append("<input type='submit' id='submit' value='Feltöltés'>");
     
-    
-
+    }
 
 }
 

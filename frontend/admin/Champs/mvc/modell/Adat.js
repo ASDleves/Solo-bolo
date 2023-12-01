@@ -4,8 +4,8 @@ export const urlapleiro ={
         type:"text",
         placeholder:"",
         value:"",
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
 
     },
     nem:{
@@ -14,16 +14,16 @@ export const urlapleiro ={
         placeholder:"",
         value:"",
 
-        regex:"[A-Z][a-z]{1,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
     },
     pozicio:{
         megj:"Pozíció",
         type:"text",
         placeholder:"",
         value:"",
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
 
     },
     faj:{
@@ -32,16 +32,16 @@ export const urlapleiro ={
         placeholder:"",
         value:"",
 
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
     },
     nyersanyag:{
         megj:"Varázslati költség",
         type:"text",
         placeholder:"",
         value:"",
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
 
     },
     fegyver:{
@@ -50,8 +50,8 @@ export const urlapleiro ={
         placeholder:"",
         value:"",
 
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
     },
     szarmazas:{
         megj:"Hős származása",
@@ -59,8 +59,8 @@ export const urlapleiro ={
         placeholder:"",
         value:"",
 
-        regex:"[A-Z][a-z]{2,15}",
-        valid:"Nagybetűvel kezdődik, legalább 3 betű legyen!"
+        regex:"^[A-Z\u00C0-\u017F][a-zA-Z\u00C0-\u017F]{1,15}",
+        valid:"Nagybetűvel kezdődjön!"
     },
     megjelenes:{
         megj:"Hős megjelenése",

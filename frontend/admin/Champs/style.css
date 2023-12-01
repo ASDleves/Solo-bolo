@@ -7,3 +7,32 @@ main{
     max-width: 1400px;
     margin: auto;
 }
+.valid {
+    color: green; /* Or you can use background-color if you prefer */
+    display: none; /* Start with it hidden */
+}
+
+.invalid {
+    color: red;
+    display: none; /* Start with it hidden */
+}
+
+.lathatosag{
+    display: none;
+}
+.submit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Make the container take up the full height */
+}
+
+#submit {
+    /* Style your submit button as needed */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}

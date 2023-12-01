@@ -4,10 +4,24 @@
 }
 main{
     width: 80%;
-    max-width: 1400px;
+    max-width: 800px;
     margin: auto;
 }
-
+header{
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    text-align: left;
+    padding-left: 30px;
+}
+h2{
+    text-align: center;
+    padding-right: 100px;
+}
+h3{
+    text-align: center;
+    padding-left: 200px;
+}
 .modal-backdrop.show {
     background-color: rgba(0, 0, 0, 0.8); /* Dark grey background */
 }
@@ -27,3 +41,46 @@ main{
     text-decoration: none;
     cursor: pointer;
 }
+@keyframes slide-from-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-from-top {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-from-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  h1.animate-left {
+    animation: slide-from-left 1s ease forwards;
+  }
+  
+  h2.animate-top {
+    animation: slide-from-top 1s ease forwards;
+  }
+  
+  h3.animate-right {
+    animation: slide-from-right 1s ease forwards;
+  }

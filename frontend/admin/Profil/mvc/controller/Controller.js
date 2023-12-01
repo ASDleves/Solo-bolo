@@ -1,20 +1,26 @@
 import DataService from "../modell/DataService.js";
 import Megjelenit from "../view/TablazatView/TablazatMegjelenit.js";
-class Controller{
-    constructor(){
+class Controller {
+    constructor() {
         this.dataService = new DataService();
         this.dataService.getAxiosData("http://localhost:8000/api/users", this.megjelenitesProfil, this.hibakezeles);
+    
         $(document).on('click', '.megtekint', (event) => {
             const id = $(event.target).data('id');
             console.log('Megtekint clicked for ID:', id);
             const name = $(event.target).closest('tr').find('.nev').text();
-
+            const element = event.target;
+            console.log(event.target)
+            element.style.backgroundColor = 'black';
+            element.style.color = 'white';
             this.userName = name;
             $('#felhasznalo-nev-placeholder').text(this.userName);
-            this.getPontsForUser(id); // Pass the correct userId
+            this.getPontsForUser(id);
         });
-        $(document).on('click', '.close', function() {
+        $(document).on('click', '.close', function () {
             $('#myModal').modal('hide');
+            $('.megtekint').css('background-color', 'lightgray');
+            $('.megtekint').css('color', 'black');
         });
     }
     getPontsForUser(userId) {
@@ -24,8 +30,8 @@ class Controller{
     megjelenitesModalban(data) {
         // Clear any existing content in the modal
         $('#modal-content').empty();
-        $('#user-id-placeholder').text("ID: "+data[0].user_id);
-        
+        $('#user-id-placeholder').text("ID: " + data[0].user_id);
+
         // Create HTML content for the modal
         let contentHtml = data.map((item, index, array) => {
             let html = `
@@ -47,17 +53,18 @@ class Controller{
         // Open the modal
         $('#myModal').modal('show');
     }
-    megjelenites(list){
+    megjelenites(list) {
         const szuloElem = $(".tarolo");
         const megjelenito = new Megjelenit(list, szuloElem);
-        
+
     }
-    megjelenitesProfil(list){
+    megjelenitesProfil(list) {
         const szuloElem = $(".felhasznalo");
         const megjelenito = new Megjelenit(list, szuloElem);
-        
+        $('.megtekint').css('background-color', 'lightgray');
+
     }
-    hibakezeles(uzenet){
+    hibakezeles(uzenet) {
         console.log(uzenet)
     }
 }

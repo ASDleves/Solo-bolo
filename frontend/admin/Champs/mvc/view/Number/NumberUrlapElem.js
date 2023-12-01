@@ -34,6 +34,9 @@ class NumberUrlapElem {
     getvalid() {
         return this.#valid;
     }
+    isValid() {
+        return this.#valid;
+    }
 
     get ertek() {
         return this.#ertek;
@@ -45,14 +48,14 @@ class NumberUrlapElem {
 
     #numberElem(key) {
         let txt = `
-            <div class="mb-3 mt-3">
-                <label for="${this.#key}" class="form-label">${this.#elemLeiro.megj}:</label>
-                <input type="number" class="form-control" id="${this.#key}" 
-                placeholder="${this.#elemLeiro.placeholder}" value="${this.#elemLeiro.value}" 
-                min="${this.#elemLeiro.regex.min}" max="${this.#elemLeiro.regex.max}">
-                <div class="valid lathatosag">OK</div>
-                <div class="invalid lathatosag">${this.#elemLeiro.valid}</div>
-            </div>
+        <div class="col-md-6 mb-3">
+        <label for="${this.#key}" class="form-label">${this.#elemLeiro.megj}:</label>
+        <input type="number" class="form-control" id="${this.#key}" 
+        placeholder="${this.#elemLeiro.placeholder}" value="${this.#elemLeiro.value}" 
+        min="${this.#elemLeiro.regex.min}" max="${this.#elemLeiro.regex.max}">
+        <div class="valid lathatosag">OK</div>
+        <div class="invalid lathatosag">${this.#elemLeiro.valid}</div>
+    </div>
         `;
         this.formelem.append(txt);
     }

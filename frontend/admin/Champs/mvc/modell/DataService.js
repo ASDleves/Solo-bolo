@@ -27,6 +27,7 @@ class DataService{
         .post(url, data)
         .then((response)=> {
             console.log("RESP", response);
+            location.reload();
         })
           .catch((error)=> {
             console.log("hiba",error);
