@@ -2,6 +2,7 @@
 use App\Http\Controllers\ChampController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PontController;
+use App\Http\Controllers\BelepesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::get('/ponts/{user_id}', [PontController::class, 'mutat']);
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
+
+Route::post('/login', [BelepesController::class, 'login']);
