@@ -984,7 +984,7 @@ return new class extends Migration
             'megjelenes'=>2010,
         ]);
         Champ::create([
-            'nev'=>'Nunu&Willump',
+            'nev'=>'Nunu and Willump',
             'nem'=>'Férfi',
             'pozicio'=>'Dzsungel',
             'faj'=>'Ember/Yeti',

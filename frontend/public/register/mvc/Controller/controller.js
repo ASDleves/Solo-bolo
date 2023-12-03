@@ -16,6 +16,7 @@ class Controller{
                 isFormValid = isFormValid && elem.getvalid();
             });
             if (isFormValid) {
+
                 console.log("valid az űrlap!")
                 urlapelemLista.forEach((elem) => {
                     let ertek = elem.ertek
@@ -23,13 +24,11 @@ class Controller{
                     urlapadat[kulcs] = ertek
                 })
                 console.log(urlapadat.nev)
-                this.dataService.postAxiosData("http://localhost:8000/api/users", {
-                "name": urlapadat.name,
-                "email": urlapadat.email,
-                "password": urlapadat.password,
-                
-
-            });
+                this.dataService.postAxiosData("http://localhost:8000/api/users", { 
+            "name": urlapadat.name,
+            "email": urlapadat.email,
+            "password": urlapadat.password,
+        });
             console.log(urlapadat.name)
             console.log(urlapadat.email)
             console.log(urlapadat.password)

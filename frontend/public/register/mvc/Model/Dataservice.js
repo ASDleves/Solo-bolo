@@ -7,8 +7,7 @@ class DataService{
         axios
         .post(url, data)
         .then((response)=> {
-            console.log("RESP", response);
-            location.reload();
+            console.log("feltöltve", response);
         })
           .catch((error)=> {
             console.log("hiba",error);

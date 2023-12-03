@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\ChampController;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PontController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,12 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/champs', [ChampController::class, 'index']);
 Route::get('/champs/nev/{nev}', [ChampController::class, 'showByName']);
 Route::get('/champs/{id}', [ChampController::class, 'show']);
-
 Route::post('/champs', [ChampController::class, 'store']);
 Route::put('/champs/{id}', [ChampController::class, 'update']);
 Route::delete('/champs/{id}', [ChampController::class, 'destroy']);
 
-Route::get('/users', [Controller::class, 'index']);
+
 Route::get('/ponts/{user_id}', [PontController::class, 'mutat']);
 
-Route::post('/users', [Controller::class, ' registral']);
+
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
