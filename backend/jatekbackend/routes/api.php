@@ -29,3 +29,5 @@ Route::delete('/champs/{id}', [ChampController::class, 'destroy']);
 
 Route::get('/users', [Controller::class, 'index']);
 Route::get('/ponts/{user_id}', [PontController::class, 'mutat']);
+
+Route::post('/users', [Controller::class, ' registral']);
