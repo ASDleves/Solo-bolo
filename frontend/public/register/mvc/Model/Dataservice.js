@@ -1,20 +1,7 @@
-class DataService{
-    constructor(){
-
-    }
-
-    postAxiosData(url, data){
-        axios
-        .post(url, data)
-        .then((response)=> {
-            console.log("feltöltve", response);
-        })
-          .catch((error)=> {
-            console.log("hiba",error);
-          })
-        
-    }
-
+class DataService {
+  postAxiosData(url, data) {
+      // Assuming you are using Axios, it returns a Promise by default.
+      return axios.post(url, data);
+  }
 }
-
-export default DataService
+export default DataService;
