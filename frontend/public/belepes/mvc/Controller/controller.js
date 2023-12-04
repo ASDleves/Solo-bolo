@@ -16,21 +16,27 @@ class Controller {
 
     handleLogin() {
         let urlapElemList = this.urlapView.getUrlapElemList();
-        
-            let loginData = {
-                name: urlapElemList.find(elem => elem.key === "name").ertek,
-                password: urlapElemList.find(elem => elem.key === "password").ertek
-            };
 
-            this.dataService.postAxiosData("http://localhost:8000/api/login", loginData)
-                .then(response => {
-                    console.log("Login successful", response.data);
-                    // Additional actions upon successful login
-                })
-                .catch(error => {
-                    console.log("Login failed", error.response.data);
-                    this.hibakezeles("Login failed: " + error.response.data.message);
-                });
+        let loginData = {
+            name: urlapElemList.find(elem => elem.key === "name").ertek,
+            password: urlapElemList.find(elem => elem.key === "password").ertek
+        };
+
+        this.dataService.postAxiosData("http://localhost:8000/api/login", loginData)
+            .then(response => {
+                console.log("Login successful", response.data);
+
+                // Store user info
+                localStorage.setItem('userName', response.data.name);
+                localStorage.setItem('status', response.data.status);
+
+                // Redirect to champguess.html
+                window.location.href = '../../champguess/Champguess.html';
+            })
+            .catch(error => {
+                console.log("Login failed", error.response.data);
+                this.hibakezeles("Login failed: " + error.response.data.message);
+            });
     }
 
     hibakezeles(uzenet) {

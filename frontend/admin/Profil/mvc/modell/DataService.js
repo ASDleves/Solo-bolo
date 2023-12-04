@@ -6,12 +6,9 @@ class DataService{
     getAxiosData(url, callback, hibacallback){
         axios.get(url)
         .then(function (response) {
-         /*  console.log("Válasz objektum",response); */
           console.log("adatok",response.data);
           console.log("státusz",response.status);
           console.log("Státusz szöveg",response.statusText);
-/*           console.log("Válasz fejléc",response.headers);
-          console.log("Válasz config",response.config); */
           callback(response.data)
           
         })
@@ -19,7 +16,6 @@ class DataService{
           hibacallback(error)
         })
         .finally(function () {
-          // always executed
         });
     }
     postAxiosData(url, data){

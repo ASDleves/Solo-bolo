@@ -30,7 +30,7 @@ class UrlapView {
     }
 
     #urlapLetrehoz() {
-        this.formelem.append('<div class="row">'); // Kezdődik a sor
+        this.formelem.append('<div class="row">');
         for (const key in this.#leiro) {
             let formElement;
             switch (this.#leiro[key].type) {
@@ -47,7 +47,7 @@ class UrlapView {
             }
         
     }
-    this.formelem.append('</div>'); // Zárjuk le az utolsó sort
+    this.formelem.append('</div>')
         
     
     }

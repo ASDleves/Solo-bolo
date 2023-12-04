@@ -1,11 +1,11 @@
 .valid {
-    color: green; /* Or you can use background-color if you prefer */
-    display: none; /* Start with it hidden */
+    color: green; 
+    display: none;
 }
 
 .invalid {
     color: red;
-    display: none; /* Start with it hidden */
+    display: none
 }
 
 .lathatosag{

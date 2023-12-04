@@ -60,7 +60,7 @@ class Controller{
             $('.invalid.lathatosag').hide();
         });
         $('#heroesModal').modal({
-            backdrop: 'static', // Disables closing by clicking outside of the modal
+            backdrop: 'static', 
             keyboard: false    
         });
         $(window).on("torles", (event) => {

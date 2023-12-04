@@ -21,8 +21,8 @@ class NumberUrlapElem {
             
             if (!isNaN(this.#ertek) && this.#ertek >= min && this.#ertek <= max) {
                 this.#valid = true;
-                this.validElem.show(); // Assuming you have a method to show the element
-                this.invalidElem.hide(); // Assuming you have a method to hide the element
+                this.validElem.show();
+                this.invalidElem.hide(); 
             } else {
                 this.#valid = false;
                 this.validElem.hide();

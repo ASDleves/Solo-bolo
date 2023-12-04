@@ -10,8 +10,17 @@ import PublicSoreleje from "../PublicView/PublicTablazat/PublicSoreleje.js";
 
 class Controller {
     constructor() {
-        // Initialize randomInt as a property of the class
+        this.updateUIBasedOnStatus(localStorage.getItem('status'));
+        console.log(localStorage)
+        $('#logoutButton').on('click', function() {
+            localStorage.clear();
 
+            window.location.href = '../public/belepes/login.html';
+        });
+        const userName = localStorage.getItem('userName'); // Assuming you have stored the username in local storage
+    if (userName) {
+        $('p.username').text(userName);
+    }
         this.dataService = new DataService();
         this.publicDataService = new PublicDataService();
         this.urlapModel = new UrlapModel();
@@ -21,7 +30,13 @@ class Controller {
 
         this.Jatek();
     }
-
+    updateUIBasedOnStatus(status) {
+        if (status === "Játékos") {
+            // Remove list items with 'admin' class links
+            $("li a.admin").closest("li").remove();
+        }
+        // Add more conditions here if you have other roles and corresponding UI updates
+    }
     Jatek(){
         let szamlalo = 0
         this.$randomInt = Math.floor(Math.random() * 165) + 1;

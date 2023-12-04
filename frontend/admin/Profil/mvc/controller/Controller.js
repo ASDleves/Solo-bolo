@@ -24,20 +24,26 @@ class Controller {
         });
 
         $('#myModal').modal({
-            backdrop: 'static', // Disables closing by clicking outside of the modal
+            backdrop: 'static', 
             keyboard: false    
         });
     }
     getPontsForUser(userId) {
-        this.dataService.getAxiosData(`http://localhost:8000/api/ponts/${userId}`, this.megjelenitesModalban, this.hibakezeles);
+        this.dataService.getAxiosData(
+            `http://localhost:8000/api/ponts/${userId}`,
+            (data) => this.megjelenitesModalban(data, userId), 
+            this.hibakezeles
+        );
     }
 
-    megjelenitesModalban(data) {
-        // Clear any existing content in the modal
+    megjelenitesModalban(data, userId) {
         $('#modal-content').empty();
+        if (data.length === 0) {
+            $('#modal-content').html('<p>Ennek a felhasználónak még nincs adatai.</p>');
+            $('#user-id-placeholder').text("ID: " + userId);
+        } else {
         $('#user-id-placeholder').text("ID: " + data[0].user_id);
 
-        // Create HTML content for the modal
         let contentHtml = data.map((item, index, array) => {
             let html = `
                 <div class="user-data">
@@ -47,15 +53,13 @@ class Controller {
                     <p>Season: ${item.Season}</p>
                 </div>
             `;
-            // Add an <hr> tag if it's not the last item in the array
             if (index < array.length - 1) {
                 html += '<hr>';
             }
             return html;
         }).join('');
         $('#modal-content').html(contentHtml);
-
-        // Open the modal
+    }
         $('#myModal').modal('show');
     }
     megjelenites(list) {

@@ -82,3 +82,46 @@ td,th {
 .badcell {
     background-color: red;
 }
+
+header{
+    height: 100px;
+    text-align: center;
+  }
+  h1{
+    padding-top: 20px;
+  }
+
+  nav{
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    background-color: #333;
+    width: 100%; /* Ensuring it spans the full width of its container */
+}
+  
+  li {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  
+  .active {
+    background-color: #04AA6D;
+  }
