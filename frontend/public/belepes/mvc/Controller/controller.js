@@ -16,9 +16,7 @@ class Controller {
 
     handleLogin() {
         let urlapElemList = this.urlapView.getUrlapElemList();
-        let isFormValid = urlapElemList.every(elem => elem.getvalid());
         
-        if (isFormValid) {
             let loginData = {
                 name: urlapElemList.find(elem => elem.key === "name").ertek,
                 password: urlapElemList.find(elem => elem.key === "password").ertek
@@ -33,9 +31,6 @@ class Controller {
                     console.log("Login failed", error.response.data);
                     this.hibakezeles("Login failed: " + error.response.data.message);
                 });
-        } else {
-            this.hibakezeles("Form is not valid");
-        }
     }
 
     hibakezeles(uzenet) {
