@@ -28,6 +28,7 @@ return new class extends Migration
             'name' => 'Ricsi',
             'email' => 'ricsi20020302@gmail.com',
             'password' => Hash::make('test123'),
+            'status' => 'Admin',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -63,6 +64,7 @@ return new class extends Migration
             'name' => 'Vöri',
             'email' => 'Vörike@gmail.com',
             'password' => Hash::make('test1234'),
+            'status' => 'Játékos',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
