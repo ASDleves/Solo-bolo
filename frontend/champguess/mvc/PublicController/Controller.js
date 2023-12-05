@@ -17,7 +17,7 @@ class Controller {
 
             window.location.href = '../public/belepes/login.html';
         });
-        const userName = localStorage.getItem('userName'); // Assuming you have stored the username in local storage
+        const userName = localStorage.getItem('userName');
     if (userName) {
         $('p.username').text(userName);
     }
@@ -32,10 +32,8 @@ class Controller {
     }
     updateUIBasedOnStatus(status) {
         if (status === "Játékos") {
-            // Remove list items with 'admin' class links
             $("li a.admin").closest("li").remove();
         }
-        // Add more conditions here if you have other roles and corresponding UI updates
     }
     Jatek(){
         let szamlalo = 0
@@ -86,7 +84,6 @@ class Controller {
                     const colorForNem = (this.Mnem === this.Hasonlitnem) ? "green" : "red";
                     this.changeTdBackground(this.Mnem, colorForNem);
 
-                    // Use the new comparison function for positions
                     const colorForPozicio = this.compareAttributes(this.Mpozi, this.Hasonlitpozicio);
                     this.changeTdBackground(this.Mpozi, colorForPozicio);
 
@@ -120,7 +117,6 @@ class Controller {
                     const colorForNem = (this.Mnem === this.Hasonlitnem) ? "green" : "red";
                     this.changeTdBackground(this.Mnem, colorForNem);
 
-                    // Use the new comparison function for positions
                     const colorForPozicio = this.compareAttributes(this.Mpozi, this.Hasonlitpozicio);
                     this.changeTdBackground(this.Mpozi, colorForPozicio);
 
@@ -222,8 +218,6 @@ class Controller {
     
             if (matchingItem) {
                 const megjelenito = new PublicMegjelenitnev(matchingItem, szuloElem, nev);
-    
-                // Change the color of the row containing the matching item
                 if (success) {
                     const matchingTd = szuloElem.find(`table td:contains('${nev}')`);
                     matchingTd.closest('tr').css('background-color', 'green');
@@ -248,7 +242,6 @@ class Controller {
             if (matchingItem) {
                 const megjelenito = new PublicSoreleje(matchingItem, szuloElem, nev);
     
-                // Change the color of the row containing the matching item
                 if (success) {
                     const matchingTd = szuloElem.find(`table td:contains('${nev}')`);
                     matchingTd.closest('tr').css('background-color', 'green');

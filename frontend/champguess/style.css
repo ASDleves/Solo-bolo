@@ -20,6 +20,7 @@ main{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "h h h"
                          "n n n"
+                         "a a as"
                          "a a a"
                          "f f f";
 }
@@ -41,8 +42,17 @@ table{
 nav{
     grid-area: n;
 }
+aside{
+  grid-area: as;
+  float: right;
+  margin-bottom: 20px;
+}
+aside p{
+  padding-left: 25px;
+}
 article{
     grid-area: a;
+    padding-top: 20px;
 }
 footer{
     grid-area: f;

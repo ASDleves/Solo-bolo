@@ -55,6 +55,22 @@ main{
     margin: auto;
     padding: 0;
     background-color: lightgrey;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "h h h"
+                         "n n n"
+                         "a a as"
+                         "a a a"
+                         "f f f";
+}
+
+aside{
+  padding-top: 20px;
+  grid-area: as;
+  float: right;
+  padding-bottom: 20px;
+}
+aside p{
+  padding-left: 30px;
 }
 nav{
     margin: 0;

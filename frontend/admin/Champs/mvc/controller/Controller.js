@@ -9,6 +9,15 @@ class Controller{
         this.dataService = new DataService();
         this.dataService.getAxiosData("http://localhost:8000/api/champs", this.megjelenites, this.hibakezeles);
         this.submitElem = $("#submit")
+        $('#logoutButton').on('click', function() {
+            localStorage.clear();
+
+            window.location.href = '../../public/belepes/login.html';
+        });
+        const userName = localStorage.getItem('userName');
+    if (userName) {
+        $('p.username').text(userName);
+    }
         this.submitElem.on("click", (event) => {
             event.preventDefault();
             let urlapelemLista = this.urlapView.getUrlapElemList();

@@ -3,12 +3,21 @@
     text-align: center;
 }
 main{
+  
     width: 80%;
     max-width: 800px;
     margin: auto;
+    background-color: lightgrey;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "h h h"
+                         "n n n"
+                         "a a as"
+                         "a a a"
+                         "f f f";
 }
 header{
     font-family: Arial, Helvetica, sans-serif;
+    grid-area: h;
 }
 h1{
     text-align: left;
@@ -25,6 +34,23 @@ h3{
 nav{
   margin: 0;
   padding: 0;
+  grid-area: n;
+}
+article{
+  grid-area: a;
+  
+}
+aside{
+  padding-top: 20px;
+  grid-area: as;
+  float: right;
+  padding-bottom: 20px;
+}
+aside p{
+  padding-left: 30px;
+}
+footer{
+  grid-area: f;
 }
 ul {
   list-style-type: none;

@@ -28,6 +28,15 @@
           
           
         </nav>
+        <aside>
+          <div id="nameContainer">
+              <p class="username"></p>
+          </div>
+          <div id="logoutContainer">
+            <button id="logoutButton">Kijelentkezés</button>
+          </div>
+          
+        </aside>
         <article>
             <div class="modal fade" id="heroesModal" tabindex="-1" aria-labelledby="heroesModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -42,8 +51,7 @@
                 </div>
               </div>
               
-              <!-- Trigger Button -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#heroesModal">
+              <button type="button" id="fogomb" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#heroesModal">
                 Hős hozzáadása
               </button>
 
