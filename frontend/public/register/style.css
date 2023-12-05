@@ -11,3 +11,79 @@
 .lathatosag{
     display: none;
 }
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-position: bottom right, bottom left, top right, top left;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+main{
+    width: 80%;
+    max-width: 800px;
+    height: 100vh;
+    min-height: 100vh;
+    opacity: 0,1;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "h h h"
+                         "n n n"
+                         "a a a"
+                         "a a a"
+                         "f f f";
+}
+header{
+    text-align: center;
+    grid-area: h;
+    height: 200px;
+    margin: auto;
+}
+h1{
+    padding: 100px;
+}
+nav{
+    grid-area: n;
+}
+
+article{
+    grid-area: a;
+    padding-top: 20px;
+}
+footer{
+    grid-area: f;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    background-color: #333;
+    width: 100%; /* Ensuring it spans the full width of its container */
+}
+  
+  li {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  
+  .active {
+    background-color: #04AA6D;
+  }

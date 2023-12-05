@@ -5,7 +5,7 @@
 main{
   
     width: 80%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
     background-color: lightgrey;
     grid-template-columns: 1fr 1fr 1fr;
@@ -39,6 +39,11 @@ nav{
 article{
   grid-area: a;
   
+}
+article img{
+  padding-top: 10px;
+  padding-left: 30px;
+  width: 20%;
 }
 aside{
   padding-top: 20px;

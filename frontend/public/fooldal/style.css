@@ -1,16 +1,3 @@
-.valid {
-    color: green; /* Or you can use background-color if you prefer */
-    display: none; /* Start with it hidden */
-}
-
-.invalid {
-    color: red;
-    display: none; /* Start with it hidden */
-}
-
-.lathatosag{
-    display: none;
-}
 body {
     margin: 0;
     height: 100vh;
