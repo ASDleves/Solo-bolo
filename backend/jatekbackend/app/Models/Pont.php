@@ -9,10 +9,10 @@ class Pont extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'id',
         'pont',
         'OneShot',
-        'Összes_Tipp',
+        'Osszes_Tipp',
         'Season',
     ];
 }

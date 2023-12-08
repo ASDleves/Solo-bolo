@@ -314,7 +314,7 @@ return new class extends Migration
             'megjelenes'=>2010,
         ]);
         Champ::create([
-            'nev'=>'GangPlank',
+            'nev'=>'Gangplank',
             'nem'=>'Férfi',
             'pozicio'=>'Top',
             'faj'=>'Ember',
@@ -824,7 +824,7 @@ return new class extends Migration
             'megjelenes'=>2009,
         ]);
         Champ::create([
-            'nev'=>'KSante',
+            'nev'=>'Ksante',
             'nem'=>'Férfi',
             'pozicio'=>'Top',
             'faj'=>'Ember',

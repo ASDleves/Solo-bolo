@@ -14,13 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ponts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('pont');
             $table->integer('OneShot');
-            $table->integer('Összes_Tipp');
+            $table->integer('Osszes_Tipp');
             $table->string('Season');
             $table->timestamps();
+
         });
 
         // Insert a user into 'users' table
@@ -34,29 +35,29 @@ return new class extends Migration
         ]);
 
         DB::table('ponts')->insert([
-            'user_id' => $userId,
-            'pont' => 13,
-            'OneShot' => 10,
-            'Összes_Tipp'=> 60,
-            'Season'=> 'Season 1',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('ponts')->insert([
-            'user_id' => $userId,
+            'id' => $userId,
             'pont' => 0,
             'OneShot' => 0,
-            'Összes_Tipp'=> 0,
-            'Season'=> 'Season 2',
+            'Osszes_Tipp'=> 0,
+            'Season'=> 'Season-1',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('ponts')->insert([
-            'user_id' => $userId,
+            'id' => $userId,
+            'pont' => 0,
+            'OneShot' => 0,
+            'Osszes_Tipp'=> 0,
+            'Season'=> 'Season-2',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('ponts')->insert([
+            'id' => $userId,
             'pont' => 5,
             'OneShot' => 1,
-            'Összes_Tipp'=> 6321,
-            'Season'=> 'Season 3',
+            'Osszes_Tipp'=> 6321,
+            'Season'=> 'Season-3',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -68,12 +69,29 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('users')->insert([
+            'name' => 'Tündi',
+            'email' => 'szerelmem@szeretem.shork',
+            'password' => Hash::make('pegazus001'),
+            'status' => 'Admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         DB::table('ponts')->insert([
-            'user_id' => 1001,
+            'id' => 1001,
             'pont' => 15,
             'OneShot' => 4,
-            'Összes_Tipp'=> 30,
-            'Season'=> 'Season 1',
+            'Osszes_Tipp'=> 30,
+            'Season'=> 'Season-1',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('ponts')->insert([
+            'id' => 1002,
+            'pont' => 0,
+            'OneShot' => 0,
+            'Osszes_Tipp'=> 0,
+            'Season'=> 'Season-1',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
