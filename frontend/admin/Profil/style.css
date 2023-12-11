@@ -3,7 +3,8 @@
     text-align: center;
 }
 main{
-  
+  height: 100vh;
+  min-height: 100vh;
     width: 80%;
     max-width: 1000px;
     margin: auto;

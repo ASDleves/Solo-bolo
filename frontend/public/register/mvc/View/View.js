@@ -41,7 +41,7 @@ class UrlapView {
             }
 
         }
-        txt += "<input type='submit' id='submit' value='Feltöltés'>"
+        txt += "<input type='submit' id='submit' value='Regisztrálás'>"
         this.formelem.append(txt)
         
     }

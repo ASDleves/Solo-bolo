@@ -5,13 +5,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-position: bottom right, bottom left, top right, top left;
-    background-size: 50% 50%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
   }
 main{
+  background-color: lightgray;
     width: 80%;
     max-width: 800px;
     height: 100vh;
@@ -40,6 +36,8 @@ nav{
 article{
     grid-area: a;
     padding-top: 20px;
+    padding: 10px;
+    font-size: 20pt;
 }
 footer{
     grid-area: f;
